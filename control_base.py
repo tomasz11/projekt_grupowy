@@ -3,7 +3,9 @@ from data import Get_data_site
 results = Get_data_site() 
 # time stamp 1 min , dane symulacyjne
 dana_probna1 = 130.1 
-dana_probna2 = 131.2 
+dana_probna2 = 131.2
+krok = 32 
+przekladnia = (80/30)
 reference_point = 0 #polnoc jako punkt odniesienia od ktorego bedziemy obracac podstawe
 
 
@@ -17,7 +19,7 @@ def Pre_positioning():
 
     #zakladamy ze jest ustawiony na 1/32 kroku, kat bazowy 1,8 stopnia, 200 krokow - pelen obrot silnika ,  przelozenie 80/30 = 2,6667
     #200 * 32 * 80 / 30 = 17066,6667
-    impuls =int( azimut * (200 * 32 * (80/30)/360))
+    impuls =int( azimut * ((200 * krok * przekladnia) /360))
     
     print(f"Liczba impulsow: {impuls}")
 
