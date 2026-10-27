@@ -9,7 +9,7 @@ def Setup():
     return start_time_str,stop_time_str
 
 def Get_data_from_user():
-    planety = {
+    planets = {
         "1": "'199'",  # Merkury
         "2": "'299'",  # Wenus
         "3": "'499'",  # Mars
@@ -23,26 +23,26 @@ def Get_data_from_user():
         "Podaj numer planety : \n 1: Merkury \n 2: Wenus \n 3: Mars \n 4:"
         " Jowisz \n 5: Saturn \n 6: Uran \n 7: Neptun \n 8: Księżyc \nWybór: "
     ).strip()
-    return planety.get(x,"'699'")
+    return planets.get(x,"'699'")
 
 
 def Get_data_site():
     url = "https://ssd.jpl.nasa.gov/api/horizons.api"
     # Parametry zapytania
     start_time,stop_time = Setup()
-    planeta = Get_data_from_user()
+    planet = Get_data_from_user()
     params = {
         "format": "json",                  
-        "COMMAND": planeta,               # Co obserwuje w NASA ID
+        "COMMAND": planet,               # Co obserwuje w NASA ID
         "MAKE_EPHEM": "YES",
         "EPHEM_TYPE": "OBSERVER",
         "CENTER": "'coord@399'",           # Obserwator na powierzchni Ziemi
         "COORD_TYPE": "GEODETIC",
         "SITE_COORD": "'18.56269,54.41344,0.01'", # Polozenie geograficzne, Gdansk Oliwa : szerolkosc,dlugosc , przewyzszenie w km
-        "START_TIME": start_time,        #utc jest wiec pokazuje o 2 h do tylu ale to nie ma znaczenia wyswietlac mozna na naszym timezone
+        "START_TIME": start_time,        #utc jest wiec pokazuje o 1 h do tylu ale to nie ma znaczenia wyswietlac mozna na naszym timezone
         "STOP_TIME": stop_time,
         "STEP_SIZE": "'1m'",               # krok czasowy 1 minuta
-        "QUANTITIES": "'4'"              
+        "QUANTITIES": "'4'"           
     }
     response = requests.get(url, params=params)
     data = response.json()
