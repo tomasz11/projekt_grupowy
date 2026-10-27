@@ -1,5 +1,5 @@
 import time
-from data import Get_data_site
+from setup import Get_data_site
 
 results = Get_data_site() 
 # time stamp 1 min , dane symulacyjne
