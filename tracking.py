@@ -22,7 +22,6 @@ def Track_object():
             x, y, w, h = cv2.boundingRect(c) #pobierz wymiary prostokata w ktorym miesci sie obiekt
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2) #narysuj go na obrazie
             cord_centre_of_object = [(x+x+w)/2 , (y+y+h)/2] #koordynaty srodka obiektu
-            #cv2.putText(frame, "Saturn", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2) #tekst wiadomo
             cv2.putText(frame, f"{cord_centre_of_object}",(x,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2) #pokaz koordynaty srodka obiektu, przyda sie do algorytmu
         out.write(frame)
         cv2.imshow("SkyWatcher", frame)
