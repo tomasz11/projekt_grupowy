@@ -2,9 +2,7 @@ import time
 from setup import Get_data_site
 
 results = Get_data_site() 
-# time stamp 1 min , dane symulacyjne
-dana_probna1 = 130.1 
-dana_probna2 = 131.2
+
 KROK = 128
 PRZEKLADNIA = (80/30)
 reference_point = 0 #polnoc jako punkt odniesienia od ktorego bedziemy obracac podstawe
