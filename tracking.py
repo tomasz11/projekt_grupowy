@@ -14,6 +14,7 @@ def Track_object():
         if not ret:
             break
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #konwertuj na skale szarosci
+        laplacian = cv2.Laplacian(gray,cv2.CV_64F).var() #wartosc tej funkcji odpowiada jak bardzo obraz jest ostry, dziala az milo
         blurred = cv2.GaussianBlur(gray, (5, 5), 0) # usuwa szumy z kosmosu (5,5) obszar jadra macierz pikseli ktora jest wyciagana srednia
         _, thresh = cv2.threshold(blurred, 40, 255, cv2.THRESH_BINARY) #zamiana obrazu na czarno bialy gdy jestmniejsze niz 40 staje sie czarne gdy wiecej to staje sie biale
         contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) #funkcja szuka granicy miedzy przejsciem z bialego na czarne czyli konturu
