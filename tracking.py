@@ -1,7 +1,7 @@
 import cv2
+import matplotlib.pyplot as plt
 
-
-cap = cv2.VideoCapture("./data_base/planety_wszystkie.mp4")
+cap = cv2.VideoCapture("./data_base/test_ostro.mp4")
 def Track_object():
     #pobranie szerokosci i wysokosci klatki nagrywanej przez kamere
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -9,12 +9,14 @@ def Track_object():
     #format
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter('output.mp4',fourcc,20.0,(frame_width,frame_height))
+    sharpness_bucket = []
     while cap.isOpened():
         ret,frame = cap.read()
         if not ret:
             break
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #konwertuj na skale szarosci
         laplacian = cv2.Laplacian(gray,cv2.CV_64F).var() #wartosc tej funkcji odpowiada jak bardzo obraz jest ostry, dziala az milo
+        sharpness_bucket.append(laplacian)
         blurred = cv2.GaussianBlur(gray, (5, 5), 0) # usuwa szumy z kosmosu (5,5) obszar jadra macierz pikseli ktora jest wyciagana srednia
         _, thresh = cv2.threshold(blurred, 40, 255, cv2.THRESH_BINARY) #zamiana obrazu na czarno bialy gdy jestmniejsze niz 40 staje sie czarne gdy wiecej to staje sie biale
         contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) #funkcja szuka granicy miedzy przejsciem z bialego na czarne czyli konturu
@@ -32,6 +34,14 @@ def Track_object():
     cap.release()
     out.release()
     cv2.destroyAllWindows()
+    Show_plott(sharpness_bucket)
+
+def Show_plott(plot):
+    plt.plot(plot, marker='.')
+    plt.title("ostrosc obrazu")
+    plt.xlabel("ilosc klatek przez caly film")
+    plt.ylabel("jak bardzo ostry jest obraz?")
+    plt.show()
 Track_object()
     
 

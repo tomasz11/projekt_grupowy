@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<robot name="model_teleskopu_skywatcher_8" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find model_teleskopu_skywatcher_8_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find model_teleskopu_skywatcher_8_description)/urdf/model_teleskopu_skywatcher_8.trans" />
+<xacro:include filename="$(find model_teleskopu_skywatcher_8_description)/urdf/model_teleskopu_skywatcher_8.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0 -3.4260491716698393e-17 0.005" rpy="0 0 0"/>
+    <mass value="16.671175575539596"/>
+    <inertia ixx="0.281882" iyy="0.281882" izz="0.563486" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://model_teleskopu_skywatcher_8_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://model_teleskopu_skywatcher_8_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="old_component__2__1">
+  <inertial>
+    <origin xyz="0.12000381302291895 -0.1352028843370766 2.4894143191289686e-08" rpy="0 0 0"/>
+    <mass value="393.59793579966487"/>
+    <inertia ixx="41.881657" iyy="2.835313" izz="41.878837" ixy="0.0" iyz="-1e-06" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.12 0.0 -0.67" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://model_teleskopu_skywatcher_8_description/meshes/old_component__2__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.12 0.0 -0.67" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://model_teleskopu_skywatcher_8_description/meshes/old_component__2__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="old_component__1__1">
+  <inertial>
+    <origin xyz="6.006254248253396e-17 -0.03206882718232441 0.2537225058105447" rpy="0 0 0"/>
+    <mass value="76.07572361819237"/>
+    <inertia ixx="4.478254" iyy="5.036005" izz="2.017568" ixy="0.0" iyz="0.256589" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.01" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://model_teleskopu_skywatcher_8_description/meshes/old_component__1__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.01" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://model_teleskopu_skywatcher_8_description/meshes/old_component__1__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 2" type="revolute">
+  <origin xyz="-0.12 -0.0 0.66" rpy="0 0 0"/>
+  <parent link="old_component__1__1"/>
+  <child link="old_component__2__1"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+  <limit upper="1.047198" lower="-0.523599" effort="100" velocity="100"/>
+</joint>
+
