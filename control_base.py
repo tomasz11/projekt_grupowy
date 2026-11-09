@@ -21,6 +21,7 @@ def Pre_positioning():
     impuls_pre_positioning =int( azimut * ((200 * KROK * PRZEKLADNIA) /360))
     
     print(f"Liczba impulsow: {impuls_pre_positioning}")
+    return azimut,altidute
 def Pre_tracking():
     delta_azimut_per_second = ((results[1][0] - results[0][0]) / 60 ) #predkosc obrotu obiektu na niebie w stopniach na sekunde
     impuls_pre_tracking = ( delta_azimut_per_second * ((200 * KROK * PRZEKLADNIA) /360)) #to wylicza liczbe impulsow na sekunde (Hz)
